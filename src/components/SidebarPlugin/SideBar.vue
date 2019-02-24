@@ -28,8 +28,6 @@
 </template>
 <script>
 import SidebarLink from "./SidebarLink.vue";
-import firebase from 'firebase'
-import db from '../../firebase/firebaseInit'
 
 export default {
   data () {
@@ -79,9 +77,6 @@ export default {
     sidebarImg () {
       return require("@/assets/img/" + this.$store.state.sidebarImg);
     }
-  },
-  created () {
-    console.log("@/assets/img/" + this.$store.state.sidebarImg)
   }
 };
 </script>

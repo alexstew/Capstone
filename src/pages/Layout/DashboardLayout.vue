@@ -5,6 +5,7 @@
       <div v-if="this.user">
       <notifications></notifications>
     <side-bar>
+      <mobile-menu></mobile-menu>
       <sidebar-link to="/home">
         <md-icon>home</md-icon>
         <p>Home</p>
@@ -70,6 +71,7 @@
 
 <script>
   import Loading from './Loading.vue';
+  import MobileMenu from "@/pages/Layout/MobileMenu.vue";
   import TopNavbar from "./TopNavbar.vue";
   import ContentFooter from "./ContentFooter.vue";
   import DashboardContent from "./Content.vue";
@@ -83,6 +85,7 @@
 
   export default {
     components: {
+      MobileMenu,
       TopNavbar,
       DashboardContent,
       ContentFooter,
@@ -106,7 +109,6 @@
     let self=this;
     firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      console.log(user);
       self.$store.commit('setUser', user);
 
       var docRef = db.collection("settings").doc(user.email);

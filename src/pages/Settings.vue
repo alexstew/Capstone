@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import firebase from 'firebase'
 import db from '../firebase/firebaseInit'
 
 export default {
@@ -49,7 +48,7 @@ export default {
       this.activeImg = img;
 
       var docRef = db.collection('settings').doc(this.user.email);
-      var setWithMerge = docRef.set({
+      docRef.set({
         Img: img
       }, { merge: true });
     },
@@ -77,7 +76,7 @@ export default {
       this.activeColor = color;
       
       var docRef = db.collection('settings').doc(this.user.email);
-      var setWithMerge = docRef.set({
+      docRef.set({
         Color: color
       }, { merge: true });
     }
