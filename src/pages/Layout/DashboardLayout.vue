@@ -2,14 +2,11 @@
   <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}">
     
     <fullscreen ref="fullscreen" @change="fullscreenChange" background="#fff">
+      <notifications></notifications>
       <div v-if="this.user">
       <notifications></notifications>
     <side-bar>
       <mobile-menu></mobile-menu>
-      <sidebar-link to="/home">
-        <md-icon>home</md-icon>
-        <p>Home</p>
-      </sidebar-link>
       <sidebar-link to="/dashboard">
         <md-icon>insert_chart</md-icon>
         <p>Dashboard</p>
@@ -139,13 +136,23 @@
       }).catch(function(error) {
         console.log("Error getting document:", error);
       });
+
+      self.$notify(
+        {
+          message: 'Account Connected Successfully',
+          icon: 'add_alert',
+          horizontalAlign: 'center',
+          verticalAlign: 'top',
+          type: 'success'
+        });
+     
     } else {
       var provider = new firebase.auth.GoogleAuthProvider();
       
       firebase.auth().signInWithRedirect(provider);
       firebase.auth().getRedirectResult().then(function(result) {
       // The signed-in user info.
-      
+       
       });
     }
     });
