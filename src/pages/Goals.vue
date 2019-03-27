@@ -251,7 +251,6 @@ export default {
                         goalList: firebase.firestore.FieldValue.arrayRemove(this.lastGoal)
                     });
                     
-                
                     docRef.update({
                         goalList: firebase.firestore.FieldValue.arrayUnion(this.editedGoal)
                     });
@@ -283,8 +282,6 @@ export default {
             this.currentIndex = null
             this.editing = false;
         }
-
-        
       }
   },
   computed: {
