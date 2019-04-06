@@ -9,7 +9,7 @@
                 </template>
 
                 <template slot="content">
-                    <p class="category">Current Goals</p>
+                    <p class="category">Today's Sleep</p>
                     <h3 class="title">x</h3>
                 </template>
             </stats-card>
@@ -21,7 +21,7 @@
                 </template>
 
                 <template slot="content">
-                    <p class="category">Completed Goals</p>
+                    <p class="category">Today's Average Energy</p>
                     <h3 class="title">x</h3>
                 </template>
             </stats-card>
@@ -33,7 +33,7 @@
                 </template>
 
                 <template slot="content">
-                    <p class="category">Current Goals</p>
+                    <p class="category">Tracking Streak</p>
                     <h3 class="title">x</h3>
                 </template>
             </stats-card>
@@ -84,131 +84,49 @@
         </div>
         <div class="md-layout-item md-size-100">
         <nav-tabs-card>
-            <template slot="content">
-                <span class="md-nav-tabs-title">Logs:</span>
-                <md-tabs md-sync-route :class="color" md-alignment="left">
+      <template slot="content">
+        <span class="md-nav-tabs-title">Tracking:</span>
+        <md-tabs md-sync-route class="md-primary" md-alignment="left">
 
-                    <md-tab id="tab-home" md-label="In Progress" md-icon="notes">
-                    </md-tab>
-                 </md-tabs>
-            <md-table>
-                <md-table-row v-for="(goal, index) in goals" :key="index">
-                    <md-table-cell>
-                        <md-button @click="completeGoal(goal, index)" class="md-just-icon md-simple md-success">
-                            <md-icon>check_circle</md-icon>
-                            <md-tooltip md-direction="top">Complete</md-tooltip>
-                        </md-button>
-                    </md-table-cell>
-                    <md-table-cell>{{ goal }}</md-table-cell>
-                    <md-table-cell>
-                        <md-button @click="editGoal(goal, index)" class="md-just-icon md-simple md-warning">
-                            <md-icon>edit</md-icon>
-                            <md-tooltip md-direction="top">Edit</md-tooltip>
-                        </md-button>
-                        <md-button @click="removeGoal(goal, index)" class="md-just-icon md-simple md-danger">
-                            <md-icon>close</md-icon>
-                            <md-tooltip md-direction="top">Remove</md-tooltip>
-                        </md-button>
-                    </md-table-cell>
-                </md-table-row>
-            </md-table>
-            </template>
-            
-        </nav-tabs-card>
+          <md-tab id="tab-home" md-label="All-Time" >
+            <nav-tabs-table></nav-tabs-table>
+          </md-tab>
+
+          <md-tab id="tab-pages" md-label="Weekly" >
+            Coming Soon
+          </md-tab>
+
+          <md-tab id="tab-posts" md-label="Add" >
+            <md-field>
+                <label>New Goal!</label>
+                <md-input v-model="goal"></md-input>
+                <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
+        </md-field>
+        <md-field>
+                <label>New Goal!</label>
+                <md-input v-model="goal"></md-input>
+                <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
+        </md-field>
+        <md-field>
+                <label>New Goal!</label>
+                <md-input v-model="goal"></md-input>
+                <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
+        </md-field>
+        <md-field>
+                <label>New Goal!</label>
+                <md-input v-model="goal"></md-input>
+                <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
+        </md-field>
+        <md-field>
+                <label>New Goal!</label>
+                <md-input v-model="goal"></md-input>
+                <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
+        </md-field>
+          </md-tab>
+        </md-tabs>
+      </template>
+    </nav-tabs-card>
         
-        </div>
-        <div class="md-layout-item md-medium-size-30 md-xsmall-size-50 md-small-size-30 md-size-17">
-            <stats-card data-background-color="red">
-                <template slot="header">
-                    <md-icon >assignment</md-icon>
-                </template>
-
-                <template slot="content">
-                    <p class="category">Today's Sleep</p>
-                </template>
-
-                <template slot="footer">
-                    <div class="stats">
-                            <md-input class="md-layout-item md-size-60" v-model="goal"></md-input>
-                            <md-button @click="addGoal" class="md-simple md-just-icon "><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-                    </div>
-                </template>
-            </stats-card>
-        </div>
-        <div class="md-layout-item md-medium-size-30 md-xsmall-size-50 md-small-size-30 md-size-17">
-            <stats-card data-background-color="red">
-                <template slot="header">
-                    <md-icon >assignment</md-icon>
-                </template>
-
-                <template slot="content">
-                    <p class="category">Morning Energy</p>
-                   
-                </template>
-
-                <template slot="footer">
-                    <div class="stats">
-                            <md-input class="md-layout-item md-size-60" v-model="goal"></md-input>
-                            <md-button @click="addGoal" class="md-simple md-just-icon "><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-                    </div>
-                </template>
-            </stats-card>
-        </div>
-        <div class="md-layout-item md-medium-size-30 md-xsmall-size-50 md-small-size-30 md-size-17">
-            <stats-card data-background-color="red">
-                <template slot="header">
-                    <md-icon >assignment</md-icon>
-                </template>
-
-                <template slot="content">
-                    <p class="category">Afternoon Energy</p>
-                  
-                </template>
-
-                <template slot="footer">
-                    <div class="stats">
-                            <md-input class="md-layout-item md-size-60" v-model="goal"></md-input>
-                            <md-button @click="addGoal" class="md-simple md-just-icon "><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-                    </div>
-                </template>
-            </stats-card>
-        </div>
-        <div class="md-layout-item md-medium-size-30 md-xsmall-size-50 md-small-size-30 md-size-17">
-            <stats-card data-background-color="red">
-                <template slot="header">
-                    <md-icon >assignment</md-icon>
-                </template>
-
-                <template slot="content">
-                    <p class="category">Evening Energy</p>
-                   
-                </template>
-
-                <template slot="footer">
-                    <div class="stats">
-                            <md-input class="md-layout-item md-size-60" v-model="goal"></md-input>
-                            <md-button @click="addGoal" class="md-simple md-just-icon "><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-                    </div>
-                </template>
-            </stats-card>
-        </div>
-        <div class="md-layout-item md-medium-size-30 md-xsmall-size-50 md-small-size-30 md-size-17">
-            <stats-card data-background-color="red">
-                <template slot="header">
-                    <md-icon >assignment</md-icon>
-                </template>
-
-                <template slot="content">
-                    <p class="category">Late Night Energy</p>
-                </template>
-
-                <template slot="footer">
-                    <div class="stats">
-                            <md-input class="md-layout-item md-size-60" v-model="goal"></md-input>
-                            <md-button @click="addGoal" class="md-simple md-just-icon "><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-                    </div>
-                </template>
-            </stats-card>
         </div>
     </div>
  </div>

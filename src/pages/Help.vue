@@ -2,23 +2,7 @@
   <div class="content">
     <div class="md-layout">
       <div class="md-layout-item md-size-66 mx-auto md-small-size-100">
-        <md-card>
-          <md-card-header :data-background-color="bg">
-            <h4 class="title">Help </h4>
-            
-          </md-card-header>
-
-          <md-card-content class="row">
-              <md-button class="md-info md-simple md-sm button">Dashboard</md-button>
-              <md-button class="md-info md-simple md-sm button">Goals</md-button>
-              <md-button class="md-info md-simple md-sm">Gym</md-button>
-              <md-button class="md-info md-simple md-sm">Tracking</md-button>
-              <md-button class="md-info md-simple md-sm">Sleep / Energy</md-button>
-              <md-button class="md-info md-simple md-sm">Measurements</md-button>
-              <md-button class="md-info md-simple md-sm">Settings</md-button>
-        
-          </md-card-content>
-        </md-card>
+       
         
         <md-card>
           <md-card-header :data-background-color="bg">
