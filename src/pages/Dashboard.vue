@@ -97,14 +97,12 @@
 <script>
 import db from '../firebase/firebaseInit'
 import {StatsCard} from '../components'
-import {NavTabsCard} from '../components'
 import {ChartCard} from '../components/'
 import firebase from 'firebase'
 
 export default {
     components: {
         StatsCard,
-        NavTabsCard,
         ChartCard
     },
   data () {
