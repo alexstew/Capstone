@@ -207,7 +207,7 @@ export default {
                 }
             } else {
                 // doc.data() will be undefined in this case
-                
+                console.log("Error Doc doesn't exist")
             }
             }).catch(function(error) {
                 console.log("Error getting document:", error);

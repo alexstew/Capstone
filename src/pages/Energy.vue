@@ -112,7 +112,7 @@
 
             <md-table v-if="subMenuSelected == 1">
               <md-table-row  v-for="value in sleep" :key="value.date">
-                    <md-table-cell>{{value.date}} Sleep Duration: {{value.hours}}</md-table-cell>
+                    <md-table-cell>{{value.date}} Sleep Duration: {{value.hours}} Hours</md-table-cell>
               </md-table-row>
             </md-table>
 
@@ -177,27 +177,27 @@
               <md-field>
                 <label>Add Sleep</label>
                 <md-input v-model="sleepInput"></md-input>
-                <md-button @click="add(0)" class="md-simple md-just-icon"><md-icon class="mainBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
+                <md-button @click="addSleep" class="md-simple md-just-icon"><md-icon class="mainBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
               </md-field>
               <md-field>
                 <label>Add Morning Energy</label>
-                <md-input ></md-input>
-                <md-button  class="md-simple md-just-icon"><md-icon class="mainBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
+                <md-input v-model="morningInput"></md-input>
+                <md-button @click="addMorning" class="md-simple md-just-icon"><md-icon class="mainBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
               </md-field>
               <md-field>
                 <label>Add Afternoon Energy</label>
-                <md-input ></md-input>
-                <md-button  class="md-simple md-just-icon"><md-icon class="mainBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
+                <md-input v-model="afternoonInput"></md-input>
+                <md-button @click="addAfternoon" class="md-simple md-just-icon"><md-icon class="mainBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
               </md-field>
               <md-field>
                 <label>Add Evening Energy</label>
-                <md-input ></md-input>
-                <md-button  class="md-simple md-just-icon"><md-icon class="mainBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
+                <md-input v-model="eveningInput"></md-input>
+                <md-button @click="addEvening" class="md-simple md-just-icon"><md-icon class="mainBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
               </md-field>
               <md-field>
                 <label>Add Night Energy</label>
-                <md-input ></md-input>
-                <md-button  class="md-simple md-just-icon"><md-icon class="mainBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
+                <md-input v-model="nightInput"></md-input>
+                <md-button @click="addNight" class="md-simple md-just-icon"><md-icon class="mainBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
               </md-field>
             </div>
           </md-card-content>
@@ -229,6 +229,10 @@ export default {
       subMenuSelected: 1,
       streak: "",
       sleepInput: "",
+      morningInput: "",
+      afternoonInput: "",
+      eveningInput: "",
+      nightInput: "",
       sleep: [
       
       ],
@@ -268,15 +272,261 @@ export default {
     }
   },
   methods: {
-    add(id){
-       let currentDate = new Date();
-       let newDate = ""
-       newDate += ((currentDate.getMonth() + 1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear()); 
+    addSleep(){
+      var docRef = db.collection('sleep').doc(this.user.email);
+      var notFound = true
+      if(this.sleep.length >= 0){
+        for(var i = 0; i < this.sleep.length; i++)
+        {
+          if(this.newDate == this.sleep[i].date)
+          {
+            notFound = false;
+            }
+        }
+      }
+      if(this.sleepInput != "" && notFound == true && !isNaN(this.sleepInput))
+      {
+        docRef.update({
+          sleepList: firebase.firestore.FieldValue.arrayUnion({date: this.newDate, hours: this.sleepInput})
+        });
+        this.sleep.push({date: this.newDate, hours: this.sleepInput});
+        this.sleepInput = "";
+      } else {
+        if(this.sleepInput == "")
+        {
+          this.$notify({
+            message: 'Make sure you entered a value!',
+            icon: 'error',
+            horizontalAlign: 'center',
+            verticalAlign: 'top',
+            type: 'danger'
+          });
+        } else if(isNaN(this.sleepInput)) {
+            this.$notify({
+              message: 'Make sure you entered a number!',
+              icon: 'error',
+              horizontalAlign: 'center',
+              verticalAlign: 'top',
+              type: 'danger'
+            });
+        } else {
+            this.$notify({
+              message: "Make sure the you didn't add today, you can update existing dates!",
+              icon: 'error',
+              horizontalAlign: 'center',
+              verticalAlign: 'top',
+              type: 'danger'
+            });
+        }
+          this.sleepInput = "";
+      }
+    },
+    addMorning(){
+      var docRef = db.collection('sleep').doc(this.user.email);
+      var notFound = true
+      if(this.morningEnergy.length >= 0){
+        for(var i = 0; i < this.morningEnergy.length; i++)
+        {
+          if(this.newDate == this.morningEnergy[i].date)
+          {
+            notFound = false;
+            }
+        }
+      }
+      if(this.morningInput != "" && notFound == true && !isNaN(this.morningInput))
+      {
+        docRef.update({
+          morningList: firebase.firestore.FieldValue.arrayUnion({date: this.newDate, energy: this.morningInput})
+        });
+        this.morningEnergy.push({date: this.newDate, energy: this.morningInput});
+        this.morningInput = "";
+      } else {
+        if(this.morningInput == "")
+        {
+          this.$notify({
+            message: 'Make sure you entered a value!',
+            icon: 'error',
+            horizontalAlign: 'center',
+            verticalAlign: 'top',
+            type: 'danger'
+          });
+        } else if(isNaN(this.morningInput)) {
+            this.$notify({
+              message: 'Make sure you entered a number!',
+              icon: 'error',
+              horizontalAlign: 'center',
+              verticalAlign: 'top',
+              type: 'danger'
+            });
+        } else {
+            this.$notify({
+              message: "Make sure the you didn't add today, you can update existing dates!",
+              icon: 'error',
+              horizontalAlign: 'center',
+              verticalAlign: 'top',
+              type: 'danger'
+            });
+        }
+          this.morningInput = "";
+      }
+    },
+    addAfternoon() {
+      var docRef = db.collection('sleep').doc(this.user.email);
+      var notFound = true
+      if(this.afternoonEnergy.length >= 0){
+        for(var i = 0; i < this.afternoonEnergy.length; i++)
+        {
+          if(this.newDate == this.afternoonEnergy[i].date)
+          {
+            notFound = false;
+            }
+        }
+      }
+      if(this.afternoonInput != "" && notFound == true && !isNaN(this.afternoonInput))
+      {
+        docRef.update({
+          afternoonList: firebase.firestore.FieldValue.arrayUnion({date: this.newDate, energy: this.afternoonInput})
+        });
+        this.afternoonEnergy.push({date: this.newDate, energy: this.afternoonInput});
+        this.afternoonInput = "";
+      } else {
+        if(this.afternoonInput == "")
+        {
+          this.$notify({
+            message: 'Make sure you entered a value!',
+            icon: 'error',
+            horizontalAlign: 'center',
+            verticalAlign: 'top',
+            type: 'danger'
+          });
+        } else if(isNaN(this.afternoonInput)) {
+            this.$notify({
+              message: 'Make sure you entered a number!',
+              icon: 'error',
+              horizontalAlign: 'center',
+              verticalAlign: 'top',
+              type: 'danger'
+            });
+        } else {
+            this.$notify({
+              message: "Make sure the you didn't add today, you can update existing dates!",
+              icon: 'error',
+              horizontalAlign: 'center',
+              verticalAlign: 'top',
+              type: 'danger'
+            });
+        }
+          this.afternoonInput = "";
+      }
+    },
+    addEvening(){
+      var docRef = db.collection('sleep').doc(this.user.email);
+      var notFound = true
+      if(this.eveningEnergy.length >= 0){
+        for(var i = 0; i < this.eveningEnergy.length; i++)
+        {
+          if(this.newDate == this.eveningEnergy[i].date)
+          {
+            notFound = false;
+            }
+        }
+      }
+      if(this.eveningInput != "" && notFound == true && !isNaN(this.eveningInput))
+      {
+        docRef.update({
+          eveningList: firebase.firestore.FieldValue.arrayUnion({date: this.newDate, energy: this.eveningInput})
+        });
+        this.eveningEnergy.push({date: this.newDate, energy: this.eveningInput});
+        this.eveningInput = "";
+      } else {
+        if(this.eveningInput == "")
+        {
+          this.$notify({
+            message: 'Make sure you entered a value!',
+            icon: 'error',
+            horizontalAlign: 'center',
+            verticalAlign: 'top',
+            type: 'danger'
+          });
+        } else if(isNaN(this.eveningInput)) {
+            this.$notify({
+              message: 'Make sure you entered a number!',
+              icon: 'error',
+              horizontalAlign: 'center',
+              verticalAlign: 'top',
+              type: 'danger'
+            });
+        } else {
+            this.$notify({
+              message: "Make sure the you didn't add today, you can update existing dates!",
+              icon: 'error',
+              horizontalAlign: 'center',
+              verticalAlign: 'top',
+              type: 'danger'
+            });
+        }
+          this.eveningInput = "";
+      }
+    },
+    addNight() {
+      var docRef = db.collection('sleep').doc(this.user.email);
+      var notFound = true
+      if(this.nightEnergy.length >= 0){
+        for(var i = 0; i < this.nightEnergy.length; i++)
+        {
+          if(this.newDate == this.nightEnergy[i].date)
+          {
+            notFound = false;
+            }
+        }
+      }
+      if(this.nightInput != "" && notFound == true && !isNaN(this.nightInput))
+      {
+        docRef.update({
+          nightList: firebase.firestore.FieldValue.arrayUnion({date: this.newDate, energy: this.nightInput})
+        });
+        this.nightEnergy.push({date: this.newDate, energy: this.nightInput});
+        this.nightInput = "";
+      } else {
+        if(this.nightInput == "")
+        {
+          this.$notify({
+            message: 'Make sure you entered a value!',
+            icon: 'error',
+            horizontalAlign: 'center',
+            verticalAlign: 'top',
+            type: 'danger'
+          });
+        } else if(isNaN(this.nightInput)) {
+            this.$notify({
+              message: 'Make sure you entered a number!',
+              icon: 'error',
+              horizontalAlign: 'center',
+              verticalAlign: 'top',
+              type: 'danger'
+            });
+        } else {
+            this.$notify({
+              message: "Make sure the you didn't add today, you can update existing dates!",
+              icon: 'error',
+              horizontalAlign: 'center',
+              verticalAlign: 'top',
+              type: 'danger'
+            });
+        }
+          this.nightInput = "";
+      }
     }
   },
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    newDate () {
+      let currentDate = new Date();
+       let newDate = ""
+       newDate += ((currentDate.getMonth() + 1) + "/" + currentDate.getDate() + "/" + currentDate.getFullYear()); 
+       return newDate;
     }
   },  
   created () {
@@ -339,26 +589,11 @@ export default {
     } else {
         sleepRef.set({
             streak: 0,
-            sleepList: [{
-              hours: 0,
-              date: "Default"
-            }],
-            morningList: [{
-              energy: 0,
-              date: "Default"
-            }],
-            afternoonList: [{
-              energy: null,
-              date: null
-            }],
-            eveningList: [{
-              energy: null,
-              date: null
-            }],
-            nightList: [{
-              energy: null,
-              date: null
-            }],
+            sleepList: [],
+            morningList: [],
+            afternoonList: [],
+            eveningList: [],
+            nightList: [],
       }, { merge: true });
     }
     }).catch(function(error) {
