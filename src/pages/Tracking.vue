@@ -85,58 +85,6 @@
             </stats-card>
         </div>
         <div class="md-layout-item md-size-100">
-    <nav-tabs-card>
-      <template slot="content">
-        <span class="md-nav-tabs-title">Tracking:</span>
-        <md-tabs md-sync-route class="md-primary" md-alignment="left">
-
-          <md-tab id="tab-home" md-label="All-Time" >
-            <nav-tabs-table></nav-tabs-table>
-          </md-tab>
-
-          <md-tab id="tab-pages" md-label="Weekly" >
-            Coming Soon
-          </md-tab>
-
-          <md-tab id="tab-posts" md-label="Add" >
-            <md-field>
-                <label>New Goal!</label>
-                <md-input v-model="goal"></md-input>
-                <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-        </md-field>
-        <md-field>
-                <label>New Goal!</label>
-                <md-input v-model="goal"></md-input>
-                <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-        </md-field>
-        <md-field>
-                <label>New Goal!</label>
-                <md-input v-model="goal"></md-input>
-                <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-        </md-field>
-        <md-field>
-                <label>New Goal!</label>
-                <md-input v-model="goal"></md-input>
-                <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-        </md-field>
-        <md-field>
-                <label>New Goal!</label>
-                <md-input v-model="goal"></md-input>
-                <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-        </md-field>
-          </md-tab>
-        </md-tabs>
-                <div class="trackingBtns">
-                    <button class="removeBtnEffect">Add Options <md-icon>arrow_forward</md-icon></button>
-                    <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">assignment</md-icon><md-tooltip md-direction="bottom">Calories</md-tooltip></md-button>
-                    <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">local_pizza</md-icon><md-tooltip md-direction="bottom">Carbs</md-tooltip></md-button>
-                    <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">fitness_center</md-icon><md-tooltip md-direction="bottom">Protien</md-tooltip></md-button>
-                    <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">fastfood</md-icon><md-tooltip md-direction="bottom">Fat</md-tooltip></md-button>
-                    <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">opacity</md-icon><md-tooltip md-direction="bottom">Water</md-tooltip></md-button>
-                </div>
-        
-      </template>
-    </nav-tabs-card>
     
   </div>
     </div>
@@ -147,13 +95,11 @@
 <script>
 
 import {StatsCard} from '../components'
-import {NavTabsCard} from '../components'
 
 
 export default {
     components: {
         StatsCard,
-        NavTabsCard
     },
   data () {
     return {

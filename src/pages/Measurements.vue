@@ -79,49 +79,7 @@
             </chart-card>
         </div>
         <div class="md-layout-item md-size-100">
-        <nav-tabs-card>
-      <template slot="content">
-        <span class="md-nav-tabs-title">Data:</span>
-        <md-tabs md-sync-route class="md-primary" md-alignment="left">
-
-          <md-tab id="tab-home" md-label="All-Time" >
-            
-          </md-tab>
-
-          <md-tab id="tab-pages" md-label="Weekly" >
-            Coming Soon
-          </md-tab>
-
-          <md-tab id="tab-posts" md-label="Add" >
-            <md-field>
-                <label>New Goal!</label>
-                <md-input v-model="goal"></md-input>
-                <md-button  class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-        </md-field>
-        <md-field>
-                <label>New Goal!</label>
-                <md-input v-model="goal"></md-input>
-                <md-button  class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-        </md-field>
-        <md-field>
-                <label>New Goal!</label>
-                <md-input v-model="goal"></md-input>
-                <md-button  class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-        </md-field>
-        <md-field>
-                <label>New Goal!</label>
-                <md-input v-model="goal"></md-input>
-                <md-button  class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-        </md-field>
-        <md-field>
-                <label>New Goal!</label>
-                <md-input v-model="goal"></md-input>
-                <md-button class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add</md-tooltip></md-button>
-        </md-field>
-          </md-tab>
-        </md-tabs>
-      </template>
-    </nav-tabs-card>
+        
         
         </div>
     </div>
@@ -132,14 +90,12 @@
 <script>
 import db from '../firebase/firebaseInit'
 import {StatsCard} from '../components'
-import {NavTabsCard} from '../components'
 import {ChartCard} from '../components/'
 import firebase from 'firebase'
 
 export default {
     components: {
         StatsCard,
-        NavTabsCard,
         ChartCard
     },
   data () {

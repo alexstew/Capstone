@@ -27,37 +27,35 @@
             </stats-card>
         </div>
         <div class="md-layout-item md-medium-size-80 md-xsmall-size-100 md-size-80">
-        <nav-tabs-card>
-            <template slot="content">
-                <span class="md-nav-tabs-title">Goals:</span>
-                <md-tabs md-sync-route :class="color" md-alignment="left">
+        <md-card>
+            <md-card-header :data-background-color="bg">
+                <h4 class="title">Goals</h4>
+            </md-card-header>
 
-                    <md-tab id="tab-home" md-label="In Progress" md-icon="notes">
-                    </md-tab>
-                 </md-tabs>
-            <md-table>
+            <md-card-content>
+                <md-table>
                 <md-table-row v-for="(goal, index) in goals" :key="index">
                     <md-table-cell>
-                        <md-button @click="completeGoal(goal, index)" class="md-just-icon md-simple md-success">
+                        <md-button @click="completeGoal(goal, index)" class="md-just-icon md-simple md-success goalBtn">
                             <md-icon>check_circle</md-icon>
                             <md-tooltip md-direction="top">Complete</md-tooltip>
                         </md-button>
                     </md-table-cell>
                     <md-table-cell>{{ goal }}</md-table-cell>
                     <md-table-cell>
-                        <md-button @click="editGoal(goal, index)" class="md-just-icon md-simple md-warning">
+                        <md-button @click="editGoal(goal, index)" class="md-just-icon md-simple md-warning goalBtn">
                             <md-icon>edit</md-icon>
                             <md-tooltip md-direction="top">Edit</md-tooltip>
                         </md-button>
-                        <md-button @click="removeGoal(goal, index)" class="md-just-icon md-simple md-danger">
+                        <md-button @click="removeGoal(goal, index)" class="md-just-icon md-simple md-danger goalBtn">
                             <md-icon>close</md-icon>
                             <md-tooltip md-direction="top">Remove</md-tooltip>
                         </md-button>
                     </md-table-cell>
                 </md-table-row>
             </md-table>
-                
-            <md-field v-if="!editing">
+            
+             <md-field v-if="!editing">
                 <label>New Goal!</label>
                 <md-input v-model="goal"></md-input>
                 <md-button @click="addGoal" class="md-simple md-just-icon"><md-icon class="goalBtn">add_circle</md-icon><md-tooltip md-direction="bottom">Add Goal</md-tooltip></md-button>
@@ -69,11 +67,8 @@
                 <md-button @click="updateGoal()" class="md-simple md-just-icon"><md-icon class="goalBtn">check_circle</md-icon><md-tooltip md-direction="bottom">Submit Change</md-tooltip></md-button>
                 <md-button @click="editing = false" class="md-simple md-just-icon"><md-icon class="goalBtn">cancel_presentation</md-icon><md-tooltip md-direction="bottom">Cancel Edit</md-tooltip></md-button>
             </md-field>
-      
-            </template>
-            
-        </nav-tabs-card>
-        
+            </md-card-content>
+        </md-card>
         </div>
     </div>
  </div>
@@ -83,13 +78,11 @@
 <script>
 import db from '../firebase/firebaseInit'
 import {StatsCard} from '../components'
-import {NavTabsCard} from '../components'
 import firebase from 'firebase'
 
 export default {
     components: {
-        StatsCard,
-        NavTabsCard
+        StatsCard
     },
   data () {
     return {
@@ -214,7 +207,7 @@ export default {
                 }
             } else {
                 // doc.data() will be undefined in this case
-                
+                console.log("Error Doc doesn't exist")
             }
             }).catch(function(error) {
                 console.log("Error getting document:", error);
@@ -315,11 +308,15 @@ export default {
              self.color = "md-danger"
         }
     } else {
-        // doc.data() will be undefined in this case
+        docRef.set({
+        Img: 1,
+        color: 1
+      }, { merge: true });
     }
     }).catch(function(error) {
       console.log("Error getting Settings:", error);
     });
+    
     goalRef.get().then(function(doc) {
     if (doc.exists) {
         for(var i = 0; i < doc.data().goalList.length; i++)
@@ -329,7 +326,10 @@ export default {
          self.currentGoals = doc.data().goalList.length;
          self.completedGoals = doc.data().completedGoals;
     } else {
-        // doc.data() will be undefined in this case
+        goalRef.set({
+            completedGoals: 0,
+            goalList: [],
+      }, { merge: true });
     }
     }).catch(function(error) {
       console.log("Error getting Goals:", error);
@@ -357,12 +357,5 @@ export default {
 
 .goalBtn:hover {
     transform: scale(1.3);
-}
-
-.goalTitle{
-    color: grey;
-    text-align: center;
-    margin: 2rem;
-    border-bottom: 1px solid lightgrey;
 }
 </style>

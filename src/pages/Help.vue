@@ -90,8 +90,49 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+import db from '../firebase/firebaseInit'
+
 export default {
-    
+    data () {
+      return {
+        bg: null
+      }
+    },
+    computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
+  created () {
+    var self = this
+
+    var docRef = db.collection("settings").doc(this.user.email);
+
+    docRef.get().then(function(doc) {
+    if (doc.exists) {
+        self.activeColor = doc.data().Color
+        if(doc.data().Color == 1){
+            self.bg = "purple"
+        }else if(doc.data().Color == 2){
+            self.bg = "blue"
+        }else if(doc.data().Color == 3){
+            self.bg = "green"
+        }else if(doc.data().Color == 4){
+            self.bg = "orange"
+        }else{
+            self.bg = "red"
+        }
+    } else {
+        docRef.set({
+        Img: 1,
+        color: 1
+      }, { merge: true });
+    }
+    }).catch(function(error) {
+      console.log("Error getting Settings:", error);
+    });
+  }
 }
 </script>
 

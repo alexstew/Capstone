@@ -5,8 +5,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         user: '',
-       sidebarColor: 'blue',
-       sidebarImg: 'sidebar-2.jpg'
+       sidebarColor: 'red',
+       sidebarImg: 'sidebar-1.jpg'
     },
     getters: {
 
