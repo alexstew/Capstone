@@ -32,7 +32,7 @@
             </stats-card>
         </div>
         <div class="md-layout-item md-medium-size-50 md-xsmall-size-50 md-small-size-45 md-size-30">
-            <stats-card data-background-color="green">
+            <stats-card data-background-color="blue">
                 <template slot="header">
                     <md-icon >fitness_center</md-icon>
                 </template>
@@ -46,7 +46,7 @@
             </stats-card>
         </div>
         <div class="md-layout-item md-medium-size-50 md-xsmall-size-50 md-small-size-45 md-size-30">
-            <stats-card data-background-color="green">
+            <stats-card data-background-color="red">
                 <template slot="header">
                     <md-icon >fastfood</md-icon>
                 </template>
@@ -74,7 +74,7 @@
             </stats-card>
         </div>
         <div class="md-layout-item md-medium-size-50 md-xsmall-size-50 md-small-size-45 md-size-30">
-            <stats-card data-background-color="green">
+            <stats-card data-background-color="blue">
                 <template slot="header">
                     <md-icon >assignment_turned_in</md-icon>
                 </template>
@@ -598,7 +598,7 @@ export default {
     var self = this
 
     var docRef = db.collection("settings").doc(this.user.email);
-    var sleepRef = db.collection("tracking").doc(this.user.email);
+    var trackingRef = db.collection("tracking").doc(this.user.email);
 
     docRef.get().then(function(doc) {
     if (doc.exists) {
@@ -628,7 +628,7 @@ export default {
       console.log("Error getting document:", error);
     });
     
-    sleepRef.get().then(function(doc) {
+    trackingRef.get().then(function(doc) {
     if (doc.exists) {
         for(var i = 0; i < doc.data().waterList.length; i++)
         {
@@ -674,7 +674,7 @@ export default {
          
          
     } else {
-        sleepRef.set({
+        trackingRef.set({
             streak: 0,
             waterList: [],
             proteinList: [],
