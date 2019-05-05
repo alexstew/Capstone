@@ -74,7 +74,7 @@
             </stats-card>
         </div>
         <div class="md-layout-item md-medium-size-50 md-xsmall-size-50 md-small-size-45 md-size-30">
-            <stats-card data-background-color="blue">
+            <stats-card data-background-color="bluenp">
                 <template slot="header">
                     <md-icon >assignment_turned_in</md-icon>
                 </template>
