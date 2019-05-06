@@ -2,6 +2,22 @@
   <div class="content">
     <div class="md-layout">
       <div class="md-layout-item md-size-66 mx-auto md-small-size-100">
+        <md-card>
+          <md-card-header :data-background-color="bg">
+            <h4 class="title">Menu Help</h4>
+          </md-card-header>
+
+          <md-card-content>
+            <h4>Desktop Menu</h4>
+            <img src="../../src/assets/img/Menu1.png" alt="">
+            <h4>Mobile Menu</h4>
+            <img src="../../src/assets/img/Menu2.png" alt="">
+            <h4>Sidebar Menu</h4>
+            <img src="../../src/assets/img/Menu3.png" alt="" height="200px">
+          </md-card-content>
+        </md-card>
+      </div>
+      <div class="md-layout-item md-size-66 mx-auto md-small-size-100">
        
         
         <md-card>
@@ -10,7 +26,7 @@
           </md-card-header>
 
           <md-card-content>
-            <img src="../../src/assets/img/sidebar-1.jpg" alt="">
+            <img src="../../src/assets/img/Dashboard.png" alt="">
           </md-card-content>
         </md-card>
       </div>
@@ -21,7 +37,7 @@
           </md-card-header>
 
           <md-card-content>
-            <img src="../../src/assets/img/sidebar-1.jpg" alt="">
+            <img src="../../src/assets/img/Goals.png" alt="">
           </md-card-content>
         </md-card>
       </div>
@@ -30,14 +46,13 @@
           <md-card-header :data-background-color="bg">
             <h4 class="title">Gym Help</h4>
           </md-card-header>
-        
-            <h3 class="center">Desktop Version</h3>
           <md-card-content>
-            <img src="../../src/assets/img/sidebar-1.jpg" alt="">
-          </md-card-content>
-          <h3 class="center">Mobile Version</h3>
-          <md-card-content>
-            <img src="../../src/assets/img/sidebar-1.jpg" alt="">
+            <h4>Completed Tab</h4>
+            <img src="../../src/assets/img/Gym1.png" alt="">
+            <h4>Routines Tab</h4>
+            <img src="../../src/assets/img/Gym2.png" alt="">
+            <h4>Start Tab</h4>
+            <img src="../../src/assets/img/Gym3.png" alt="">
           </md-card-content>
         </md-card>
       </div>
@@ -46,9 +61,13 @@
           <md-card-header :data-background-color="bg">
             <h4 class="title">Tracking Help</h4>
           </md-card-header>
-
           <md-card-content>
-            <img src="../../src/assets/img/sidebar-1.jpg" alt="">
+            <h4>All-time Water Tab</h4>
+            <img src="../../src/assets/img/Tracking1.png" alt="">
+            <h4>All-time Macros Tab</h4>
+            <img src="../../src/assets/img/Tracking2.png" alt="">
+            <h4>Add Tab</h4>
+            <img src="../../src/assets/img/Tracking3.png" alt="">
           </md-card-content>
         </md-card>
       </div>
@@ -59,7 +78,12 @@
           </md-card-header>
 
           <md-card-content>
-            <img src="../../src/assets/img/sidebar-1.jpg" alt="">
+            <h4>All-time Sleep Tab</h4>
+            <img src="../../src/assets/img/Sleep1.png" alt="">
+            <h4>All-time Energy Tab</h4>
+            <img src="../../src/assets/img/Sleep2.png" alt="">
+            <h4>Add Tab</h4>
+            <img src="../../src/assets/img/Sleep3.png" alt="">
           </md-card-content>
         </md-card>
       </div>
@@ -70,7 +94,12 @@
           </md-card-header>
 
           <md-card-content>
-            <img src="../../src/assets/img/sidebar-1.jpg" alt="">
+            <h4>All-time Bodyweight Tab</h4>
+            <img src="../../src/assets/img/Measurements1.png" alt="">
+            <h4>All-time Other Tab</h4>
+            <img src="../../src/assets/img/Measurements2.png" alt="">
+            <h4>Add Tab</h4>
+            <img src="../../src/assets/img/Measurements3.png" alt="">
           </md-card-content>
         </md-card>
       </div>
@@ -81,7 +110,7 @@
           </md-card-header>
 
           <md-card-content>
-            <img src="../../src/assets/img/sidebar-1.jpg" alt="">
+            <img src="../../src/assets/img/Settings.png" alt="">
           </md-card-content>
         </md-card>
       </div>
@@ -90,7 +119,6 @@
 </template>
 
 <script>
-import firebase from 'firebase'
 import db from '../firebase/firebaseInit'
 
 export default {
