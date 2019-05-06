@@ -13,7 +13,7 @@
             <h4>Mobile Menu</h4>
             <img src="../../src/assets/img/Menu2.png" alt="">
             <h4>Sidebar Menu</h4>
-            <img src="../../src/assets/img/Menu3.png" alt="" height="200px">
+            <img class="img" src="../../src/assets/img/Menu3.png" alt="">
           </md-card-content>
         </md-card>
       </div>
@@ -165,6 +165,11 @@ export default {
 </script>
 
 <style scoped>
+.img{
+  height: 150px;
+  position: relative;
+  left: 40%;
+}
 .button{
     margin: 0;
     padding:0;
